@@ -13,7 +13,7 @@ public:
         cout << "Length: " << length << ", Width: " << width << endl;
     }
     
-    friend void modifyRectangle(Rectangle& rect);
+    friend void modifyRectangle(Rectangle& rect, double l, double w);
 };
 
 void modifyRectangle(Rectangle& rect, double l, double w) {
@@ -40,4 +40,3 @@ int main() {
     
     return 0;
 }
-

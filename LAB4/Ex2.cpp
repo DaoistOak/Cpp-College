@@ -34,7 +34,7 @@ public:
 };
 
 int main() {
-    Student student1("Student 1", 20, 3.8);
+    Student student1("Student 1", 20, (float)3.8);
     cout << "Student 1:" << endl;
     student1.display();
     cout << endl;

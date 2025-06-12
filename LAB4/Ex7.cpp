@@ -13,8 +13,8 @@ class rect{
         void display() const{
             cout << "Length: " << length << ", Width: " << width << endl;
         }
-        void modparam(double l,double w) const{
-            cout<< "Attempting Mod"<<endl;
+        void modparam(double l, double w) {
+            cout << "Attempting Mod" << endl;
             this->length = l;
             this->width = w;
             cout << "Modified Length: " << length << ", Width: " << width << endl;

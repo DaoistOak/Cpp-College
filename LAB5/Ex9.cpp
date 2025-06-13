@@ -1,4 +1,5 @@
 #include <iostream>
+#include <iomanip>
 using namespace std;
 
 class Time {
@@ -80,11 +81,11 @@ int main() {
     sum = t1 + t2;
     
     cout << "\nTime 1: ";
-    t1.showTime();
+    cout << t1;
     cout << "\nTime 2: ";
-    t2.showTime();
+    cout << t2;
     cout << "\nSum: ";
-    sum.showTime();
+    cout << sum;
     cout<<endl; 
     return 0;
 }

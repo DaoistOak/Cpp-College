@@ -49,7 +49,7 @@ public:
         Time result;
         result.seconds = seconds + t2.seconds;
         result.minutes = minutes + t2.minutes;
-        result.hours = hours + t2.hours;
+        result.hours = hours + t4.hours;
         result.days = days + t2.days;
         result.normalize();
         return result;
@@ -68,11 +68,11 @@ int main() {
     sum = t1 + t2;
     
     cout << "\nTime 1: ";
-    t1.showTime();
+    cout << t1;
     cout << "\nTime 2: ";
-    t2.showTime();
+    cout << t2;
     cout << "\nSum: ";
-    sum.showTime();
+    cout << sum;
     cout<<endl; 
     return 0;
 }

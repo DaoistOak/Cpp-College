@@ -57,7 +57,7 @@ int main() {
     cout << "Second "<<endl;
     m2.display();
     sum = m1 + m2;
-    cout << "Sum "<<endl;
+    cout << "Multiplication "<<endl;
     sum.display();
 
     return 0;

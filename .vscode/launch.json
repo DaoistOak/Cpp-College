@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/zeph/Documents/College/Cpp/Day8",
-      "program": "/home/zeph/Documents/College/Cpp/Day8/build/Debug/outDebug",
+      "cwd": "/home/zeph/Documents/College/Cpp/LAB5",
+      "program": "/home/zeph/Documents/College/Cpp/LAB5/build/Debug/outDebug",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

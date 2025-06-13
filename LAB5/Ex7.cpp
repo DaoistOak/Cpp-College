@@ -29,7 +29,7 @@ class City {
         }
         
         float operator-(City c) {
-            return abs(this->DistFromKtm - c.DistFromKtm);
+            return (this->DistFromKtm - c.DistFromKtm);
         }
 };
 

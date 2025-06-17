@@ -5,7 +5,7 @@ class Currency {
     float npr;
 public:
     Currency(float usd) {
-        npr = usd * (float)130;
+        npr = usd * ()130;
     }
     operator float() {
         return npr;

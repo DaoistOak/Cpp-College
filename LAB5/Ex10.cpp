@@ -49,10 +49,22 @@ public:
         Time result;
         result.seconds = seconds + t2.seconds;
         result.minutes = minutes + t2.minutes;
-        result.hours = hours + t4.hours;
+        result.hours = hours + t2.hours;
         result.days = days + t2.days;
         result.normalize();
         return result;
+    }
+
+    friend ostream& operator<<(ostream& os, const Time& t) {
+        if (t.days > 0) {
+            os << t.days << " day";
+            if (t.days > 1) os << "s";
+            os << ", ";
+        }
+        os << t.hours << ":"
+           << setw(2) << setfill('0') << t.minutes << ":"
+           << setw(2) << setfill('0') << t.seconds;
+        return os;
     }
 };
 

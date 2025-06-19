@@ -55,7 +55,7 @@ int main() {
 
     cout << endl << endl << "Comparisons:";
     cout << endl << "dist1 > dist2: " << ((dist1 > dist2) ? "true" : "false");
-    cout << endl << "dist1 == dist2: " << ((dist1 == dist2) ? "true" : "false");
+    cout << endl << "dist1 == dist2: " << ((dist1 == dist2) ? "true" : "false")<<endl;
 
     return 0;
 }

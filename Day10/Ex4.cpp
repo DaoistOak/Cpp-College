@@ -18,7 +18,10 @@ public:
 
 int main() {
     Manager manager;
-    manager.setSalary(50000);
+    int sal;
+    cout<< "Enter Salary: ";
+    cin>>sal;
+    manager.setSalary(sal);
     cout << "Manager's salary: " << manager.getSalary() << endl;
     return 0;
 }

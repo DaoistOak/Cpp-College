@@ -1,35 +1,26 @@
 #include <iostream>
-
 using namespace std;
-
-class Animal {
+class Person {
 public:
     string name;
+    int age;
 
-    Animal(string n) : name(n) {}
-
-    void eat() {
-        cout << name << " is eating." << endl;
-    }
+    Person(string n, int a) : name(n), age(a) {}
 };
 
-class Dog : public Animal {
+class Student : public Person {
 public:
-    string breed;
+    int rollNo;
 
-    Dog(string n, string b) : Animal(n), breed(b) {}
-
-    void bark() {
-        cout << name << " the " << breed << " is barking." << endl;
-    }
+    Student(string n, int a, int r) : Person(n, a), rollNo(r) {}
 };
 
 int main() {
-    Dog myDog("Buddy", "Golden Retriever");
+    Person person("PERSON1", 20);
+    cout << "Person Name: " << person.name << ", Age: " << person.age << endl;
 
-    myDog.eat();
-
-    myDog.bark();
+    Student student("STUDENT1", 18, 101);
+    cout << "Student Name: " << student.name << ", Age: " << student.age << ", Roll No: " << student.rollNo << endl;
 
     return 0;
 }

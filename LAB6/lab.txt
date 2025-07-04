@@ -1,0 +1,370 @@
+// Code from Ex1.cpp
+#include <iostream>
+using namespace std;
+class Person {
+public:
+    string name;
+    int age;
+
+    Person(string n, int a) : name(n), age(a) {}
+};
+
+class Student : public Person {
+public:
+    int rollNo;
+
+    Student(string n, int a, int r) : Person(n, a), rollNo(r) {}
+};
+
+int main() {
+    Person person("PERSON1", 20);
+    cout << "Person Name: " << person.name << ", Age: " << person.age << endl;
+
+    Student student("STUDENT1", 18, 101);
+    cout << "Student Name: " << student.name << ", Age: " << student.age << ", Roll No: " << student.rollNo << endl;
+
+    return 0;
+}
+
+// Code from Ex2.cpp
+#include<iostream>
+using namespace std;
+
+
+// Code from Ex3.cpp
+#include <iostream>
+using namespace std;
+
+class Shape {
+protected:
+    float area;
+public:
+    void setArea(float a) {
+        area = a;
+    }
+    void draw() {
+        cout << "Drawing a shape" << endl;
+    }
+};
+
+class Circle : public Shape {
+private:
+    float r;
+public:
+    void setRadius(float radius) {
+            r= radius;
+    }
+    void calculateArea() {
+        setArea(3.14f * r * r);
+    }
+    void draw() {
+        cout << "Drawing a circle of radius " << r << endl;
+    }
+};
+
+int main() {
+    Circle circle;
+    float rad;
+    cout << "Enter radius: ";
+    cin >> rad;
+    circle.setRadius(rad);
+    circle.calculateArea();
+    circle.draw();
+    return 0;
+}
+
+// Code from Ex4.cpp
+#include <iostream>
+using namespace std;
+class Vehicle {
+public:
+    virtual void move() = 0;
+};
+
+class Car : public Vehicle {
+private:
+    string brand;
+
+public:
+    Car(string b) : brand(b) {}
+
+    void move() override {
+        cout << "Driving a " << brand << " car." << endl;
+    }
+};
+
+int main() {
+    string brand;
+    cout << "Enter the brand of the car: ";
+    cin >> brand;
+
+    Vehicle* vehicle = new Car(brand);
+    vehicle->move();
+
+    return 0;
+}
+
+// Code from Ex5.cpp
+#include <iostream>
+using namespace std;
+class Engine{
+    private:
+        int horsepower=0;
+    public:
+        Engine(int hp){
+            horsepower=hp;
+        }
+        void display(){
+            cout<<"Horsepower: "<<horsepower<<endl;
+        }
+};
+
+class Car{
+    private:
+        string brand;
+        Engine engine;
+    public:
+        Car(string b, int hp):brand(b),engine(hp){}
+        void display(){
+            cout<<"Brand: "<<brand<<endl;
+            engine.display();
+        }
+};
+
+int main(){
+    Car car("Nissan", 100);
+    car.display();
+    return 0;
+}
+
+// Code from Ex6.cpp
+#include <iostream>
+using namespace std;
+
+class Base{
+    public:
+        int pub_d;
+    protected:
+        int pro_d;
+    private:
+        int pri_d;
+    public:
+        Base(int p, int pr, int prr) : pub_d(p), pro_d(pr), pri_d(prr) {}
+};
+
+class Derived:public Base{
+    public:
+        Derived(int p, int pr, int prr) : Base(p, pr, prr) {}
+        void display(){
+            cout<<"Public Data: "<<pub_d<<endl;
+            cout<<"Protected Data: "<<pro_d<<endl;
+            // cout<<"Private Data: "<<pri_d<<endl;
+        }
+};
+class Derived2:private Base{
+    public:
+        Derived2(int p, int pr, int prr) : Base(p, pr, prr) {}
+        void display(){
+            cout<<"Public Data: "<<pub_d<<endl;
+            cout<<"Protected Data: "<<pro_d<<endl;
+            // cout<<"Private Data: "<<pri_d<<endl;
+        }
+};
+class Derived3:protected Base{
+    public:
+        Derived3(int p, int pr, int prr) : Base(p, pr, prr) {}
+        void display(){
+            cout<<"Public Data: "<<pub_d<<endl;
+            cout<<"Protected Data: "<<pro_d<<endl;
+            // cout<<"Private Data: "<<pri_d<<endl;
+        }
+};
+
+int main(){
+    Derived d(10,20,30);
+    Derived2 d2(10,20,30);
+    Derived3 d3(10,20,30);
+    d.display();
+    d2.display();
+    d3.display(); 
+    return 0;
+}
+
+// Code from Ex7.cpp
+#include <iostream>
+using namespace std;
+class Animal {
+public:
+    virtual void sound() = 0;
+};
+
+class Dog : public Animal {
+public:
+    void sound() override {
+        cout << "Woof!" << endl;
+    }
+};
+
+class Cat : public Animal {
+public:
+    void sound() override {
+        cout << "Meow!" << endl;
+    }
+};
+
+int main() {
+    int nA;
+    cout << "Enter the number of animals(max 100): ";
+    cin >> nA;
+
+    Animal* animals[100];
+    for(int i=0;i<nA;i++){
+        cout << "Enter 1 for Dog or 2 for Cat: ";
+        int choice;
+        cin >> choice;
+        if(choice == 1){
+            animals[i] = new Dog();
+        }else if(choice == 2){
+            animals[i] = new Cat();
+        }else{
+            cout << "Invalid choice." << endl;
+            return 1;
+        }
+        animals[i]->sound();
+    }
+
+    return 0;
+}
+
+// Code from Ex8.cpp
+#include <iostream>
+using namespace std;
+class Battery {
+public:
+    void showStatus() {
+        cout << "Battery Status" << endl;
+    }
+};
+
+class Screen {
+public:
+    void showStatus() {
+        cout << "Screen Status" << endl;
+    }
+};
+
+class Smartphone : public Battery, public Screen {
+public:
+    void showStatus() {
+        Battery::showStatus();
+        Screen::showStatus();
+    }
+};
+
+int main() {
+    Smartphone phone;
+    phone.showStatus();
+    return 0;
+}
+
+// Code from Ex9.cpp
+#include <iostream>
+using namespace std;
+
+class Person {
+protected:
+    string name;
+    int age;
+public:
+    Person(string n, int a) : name(n), age(a) {
+        cout << "Person constructor called" << endl;
+    }
+};
+
+class Employee : public Person {
+private:
+    int employeeID;
+public:
+    Employee(string n, int a, int id) : Person(n, a), employeeID(id) {
+        cout << "Employee constructor called" << endl;
+    }
+};
+
+int main() {
+    string name;
+    int age, id;
+    cout << "Enter name: ";
+    cin >> name;
+    cout << "Enter age: ";
+    cin >> age;
+    cout << "Enter employee ID: ";
+    cin >> id;
+
+    Employee emp(name, age, id);
+    return 0;
+}
+
+// Code from Ex10.cpp
+#include <iostream>
+using namespace std;
+
+class Shape {
+public:
+    virtual ~Shape() {
+    // ~Shape(){
+        cout << "Shape destructor called" << endl;
+    }
+};
+
+class Rectangle : public Shape {
+public:
+    ~Rectangle() {
+        cout << "Rectangle destructor called" << endl;
+    }
+};
+
+int main() {
+    Rectangle shape;
+    return 0;
+}
+
+// Code from Ex11.cpp
+#include <iostream>
+using namespace std;
+
+class A {
+protected:
+    int value;
+public:
+    A() {
+        cout << "Enter value: ";
+        cin >> value;
+    }
+};
+
+class B : virtual public A {
+    public:
+        void displayValue(){
+            cout<<"Class B";
+        }
+};
+
+class C : virtual public A {
+    public:
+        void displayValue(){
+            cout<<"Class C";
+        }
+};
+
+class D : public B, public C {
+public:
+    void displayValue() {
+        cout << "Value: " << value << endl;
+    }
+};
+
+int main() {
+    D d;
+    d.displayValue();
+    return 0;
+}

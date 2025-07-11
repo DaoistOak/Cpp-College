@@ -1,45 +1,21 @@
 #include <iostream>
-#include <typeinfo>
 using namespace std;
 
-class Employee {
+class Student {
 public:
-    virtual void getRole(){
-        cout << "Employee" << endl;
-    };
-};
+    int id;
+    string name;
 
-class Manager: public Employee {
-public:
-    void getRole() override {
-        cout << "Manager" << endl;
-    }
-    void getBonus(){
-        cout << "Manager gets bonus" << endl;
-    }
+    Student(int idr, string namer) : id(idr), name(namer) {}
 };
-
-class Engineer : public Employee {
-public:
-    void getRole() override {
-        cout << "Engineer" << endl;
-    }
-};
-
 int main() {
-    Employee* emp1 = new Manager();
-    Employee* emp2 = new Engineer();
-    Manager* manager1 = dynamic_cast<Manager*>(emp1);
-    Manager* manager2 = dynamic_cast<Manager*>(emp2);
-    cout << "Type of emp1, emp2: " << typeid(*emp1).name() << ", " << typeid(*emp2).name() << endl;
-    emp1->getRole();
-    emp2->getRole();
-    if (manager1 != nullptr) {
-        manager1->getBonus();
-    }
-    if (manager2 != nullptr) {
-        manager2->getBonus();
-    }
+    Student student(1, "John");
+    char* studentPtr = reinterpret_cast<char*>(&student);
+    cout << "Memory address of student: " << reinterpret_cast<void*>(studentPtr) << endl;
+
+    int address = 100;
+    char* charPtr = reinterpret_cast<char*>(reinterpret_cast<void*>(&address));
+    cout << "Pointer from integer: " << reinterpret_cast<void*>(charPtr) << endl;
 
     return 0;
 }

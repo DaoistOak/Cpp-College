@@ -14,6 +14,9 @@ public:
     void getRole() override {
         cout << "Manager" << endl;
     }
+    void getBonus(){
+        cout << "Manager gets bonus" << endl;
+    }
 };
 
 class Engineer : public Employee {
@@ -24,14 +27,19 @@ public:
 };
 
 int main() {
-    Employee* emp[2] = {new Manager(), new Engineer()};
-    cout << "Type of emp2, emp1: " << typeid(*emp[1]).name() << ", " << typeid(*emp[0]).name() << endl;
-    Manager* manager1 = dynamic_cast<Manager*>(emp[0]);
-    Manager* manager2 = dynamic_cast<Manager*>(emp[1]);
-    manager1->getRole();
-    manager2->getRole();
-    delete emp[0];
-    delete emp[1];
+    Employee* emp1 = new Manager();
+    Employee* emp2 = new Engineer();
+    Manager* manager1 = dynamic_cast<Manager*>(emp1);
+    Manager* manager2 = dynamic_cast<Manager*>(emp2);
+    cout << "Type of emp1, emp2: " << typeid(*emp1).name() << ", " << typeid(*emp2).name() << endl;
+    emp1->getRole();
+    emp2->getRole();
+    if (manager1 != nullptr) {
+        manager1->getBonus();
+    }
+    if (manager2 != nullptr) {
+        manager2->getBonus();
+    }
 
     return 0;
 }

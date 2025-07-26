@@ -1,0 +1,311 @@
+// Ex1.cpp
+#include <iostream>
+using namespace std;
+
+class DBZ {
+public:
+    string message;
+    DBZ(string msg) {
+        message = msg;
+    }
+};
+
+int main() {
+    float num1, num2;
+    cout << "Enter the first number: ";
+    cin >> num1;
+    cout << "Enter the second number: ";
+    cin >> num2;
+
+    try {
+        if (num2 == 0) {
+            throw DBZ("Cannot divide by zero!");
+        }
+        float result = num1 / num2;
+        cout << "Result: " << result << endl;
+    } catch (DBZ e) {
+        cout << "Exception caught: " << e.message << endl;
+    }
+
+    return 0;
+}
+
+// Ex2.cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int choice;
+    cout << "Enter a number (1 for int, 2 for char, 3 for string): ";
+    cin >> choice;
+    try {
+        if (choice == 1) {
+            throw 42;
+        }
+        else if (choice == 2) {
+            throw 'X';
+        }
+        else if (choice == 3) {
+            throw string("String exception");
+        }
+        else {
+        cout << "No exception thrown. Invalid choice." << endl;
+        }
+    } catch (int e) {
+        cout << "An exception occurred. Exception Nr. " << e << endl;
+    } catch (char e) {
+        cout << "An exception occurred. Exception Char. " << e << endl;
+    } catch (const string& e) {
+        cout << "An exception occurred. Exception String. " << e << endl;
+    }
+
+    return 0;
+}
+
+// Ex3.cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+    int choice;
+    cout << "Enter a number (1 for int, 2 for char, 3 for string): ";
+    cin >> choice;
+    try {
+        if(choice == 1) {
+            throw 42;
+        }
+        else if(choice == 2) {
+            throw 'X';
+        }
+        else if(choice == 3) {
+            throw string("String exception");
+        }
+        else{
+        cout << "No exception thrown. Invalid choice." << endl;
+            throw nullptr;
+        }
+    }catch (int e) {
+        cout << "An exception occurred. Exception Nr. " << e << endl;
+    }catch (char e) {
+        cout << "An exception occurred. Exception Char. " << e << endl;
+    }catch (const string& e) {
+        cout << "An exception occurred. Exception String. " << e << endl;
+    }catch(...){
+        cout<<"Unknown Error Type Detected";
+    }
+
+    return 0;
+}
+
+// Ex4.cpp
+#include <iostream>
+using namespace std;
+
+class DBZ {
+public:
+    string message;
+    DBZ(string msg) {
+        message = msg;
+    }
+};
+
+int main() {
+    float num1, num2;
+    cout << "Enter the first number: ";
+    cin >> num1;
+    cout << "Enter the second number: ";
+    cin >> num2;
+
+    try {
+        try {
+            if (num2 == 0) {
+                throw DBZ("Cannot divide by zero!");
+            }
+            float result = num1 / num2;
+            cout << "Result: " << result << endl;
+        } catch (DBZ e) {
+        cout << "Exception caught: " << e.message << endl;
+        throw;
+        }
+    }catch (...) {
+            cout << "Outer catch: Unknown exception caught" << endl;
+    }
+
+
+    return 0;
+}
+// Ex5.cpp
+#include<iostream>
+using namespace std;
+
+class MyException{
+public:
+    MyException(const char* message) : m_message(message) {}
+    const char* what() const throw() { return m_message; }
+private:
+    const char* m_message;
+};
+
+int main()
+{
+    try
+    {
+        throw MyException("This is a custom exception");
+    }
+    catch(const MyException& e)
+    {
+        cout << "Caught MyException: " << e.what() << endl;
+    }
+    return 0;
+}
+
+// Ex6.cpp
+#include <iostream>
+#include <exception>
+using namespace std;
+void customTerminate() {
+    cout << "Custom terminate handler called" << endl;
+    exit(1);
+}
+int main() {
+    set_terminate(customTerminate);
+    int value;
+    cout << "Enter a number (non-zero to throw uncaught exception): ";
+    cin >> value;
+    try {
+        if (value != 0) {
+        throw string("Uncaught string exception thrown!");
+        }
+        cout << "No exception thrown, value is: " << value << endl;
+    }
+    catch (int e) {
+        cout << "This catch block won't be used: " << e << endl;
+    }
+    return 0;
+}
+// Ex7.cpp
+#include <iostream>
+#include <exception>
+#include<stdexcept>
+#include <string>
+using namespace std;
+
+void customUnexpected() {
+    cout << "Custom unexpected handler called" << endl;
+    throw;
+}
+
+double myFunction() throw(double) {
+    throw 10;
+}
+
+int main() {
+    set_unexpected(customUnexpected);
+    try {
+        myFunction();
+    }
+    catch (int e) {
+        cout << "Caught int exception: " << e << endl;
+    }
+    return 0;
+}
+
+// Ex8.cpp
+#include <iostream>
+#include <string>
+using namespace std;
+
+class TestClass {
+private:
+    int value;
+public:
+    TestClass(int val) {
+        try {
+            if (val < 0) {
+                throw string("Negative value not allowed in constructor!");
+            }
+            value = val;
+            cout << "Constructor: Object created with value " << value << endl;
+        } catch (const string& e) {
+            cout << "Constructor exception: " << e << endl;
+            throw;
+        }
+    }
+    ~TestClass() {
+        cout << "Destructor: Cleaning up object with value " << value << endl;
+    }
+    void display() const {
+        cout << "Current value: " << value << endl;
+    }
+};
+
+int main() {
+    try {
+        int input;
+        cout << "Enter a number for object creation: ";
+        cin >> input;
+        TestClass obj(input);
+        obj.display();
+    } catch (const string& e) {
+        cout << "Main caught exception: " << e << endl;
+    } catch (...) {
+        cout << "Main caught unknown exception" << endl;
+    }
+    return 0;
+}
+
+// Ex9.cpp
+#include <iostream>
+#include <stdexcept>
+#include <string>
+using namespace std;
+
+void checkAge(int age) {
+    if (age < 0) {
+        throw runtime_error("Invalid age");
+    } else {
+        cout << "Age is: " << age << endl;
+    }
+}
+
+int main() {
+    int age;
+    
+    cout << "Enter your age: ";
+    cin >> age;
+    
+    try {
+        checkAge(age);
+    } catch (runtime_error& e) {
+        cout << "Caught runtime error: " << e.what() << endl;
+    }
+    
+    return 0;
+}
+// Ex10.cpp
+#include <iostream>
+#include <exception>
+using namespace std;
+
+void functionC() {
+    throw runtime_error("Exception from function C");
+}
+
+void functionB() {
+    functionC();
+}
+
+void functionA() {
+    try {
+        functionB();
+    } catch (const exception& e) {
+        cout << "Exception caught in function A: " << e.what() << endl;
+    }
+}
+
+int main() {
+    functionA();
+    return 0;
+}
